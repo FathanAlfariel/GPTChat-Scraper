@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Flowbite CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "selector",
+      };
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Icon -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="flex justify-end gap-x-2 p-4">
+      <!-- Add Prompt Link Button -->
+      <button
+        type="button"
+        data-modal-target="add-prompt-modal"
+        data-modal-toggle="add-prompt-modal"
+        class="whitespace-nowrap inline-flex items-center gap-x-1 py-2.5 pl-3.5 pr-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+      >
+        <span class="material-symbols-outlined"> add </span>
+        Tambah
+      </button>
+
+      <!-- User Menu -->
+      <div id="user-menu">
+        <button
+          id="profileMenu"
+          data-dropdown-toggle="profile-menu"
+          type="button"
+          class="whitespace-nowrap inline-flex items-center gap-x-1 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm pl-5 pr-3.5 py-2.5"
+        >
+          Fathan
+          <span class="material-symbols-outlined"> keyboard_arrow_down </span>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div
+          id="profile-menu"
+          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-2xl shadow border w-44"
+        >
+          <ul
+            class="p-1 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="profileMenu"
+          >
+            <li>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-xl"
+                >Sign out</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button
+        data-modal-target="sign-up-modal"
+        data-modal-toggle="sign-up-modal"
+        type="button"
+        class="whitespace-nowrap text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+      >
+        Sign up
+      </button>
+
+      <!-- Sign in button -->
+      <button
+        data-modal-target="sign-in-modal"
+        data-modal-toggle="sign-in-modal"
+        type="button"
+        class="whitespace-nowrap py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+      >
+        Sign in
+      </button>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-1 md:px-0">
+      <ul class="block md:hidden flex flex-col">
+        <li
+          class="flex justify-between items-center rounded-xl hover:bg-slate-100 p-3"
+        >
+          <!-- Data -->
+          <div class="flex items-center">
+            <!-- Number -->
+            <p class="text-sm text-center">1</p>
+
+            <div class="flex flex-col ml-4">
+              <!-- Chat titles on ChatGPT -->
+              <p class="text-sm line-clamp-2">Bagging vs Boosting</p>
+
+              <!-- Uploader Name -->
+              <p class="text-xs lien-clamp-1 text-slate-700">
+                Fathan Alfariel Adhyaksa &#8226; Senin, 19 Desember 2024
+              </p>
+            </div>
+          </div>
+
+          <!-- More Button -->
+          <button
+            id="moreMenu"
+            data-dropdown-toggle="more-menu"
+            type="button"
+            class="block text-slate-600 hover:text-black hover:bg-slate-300 focus:ring-2 focus:outline-none focus:ring-slate-300 rounded-full p-px text-center inline-flex items-center"
+          >
+            <!-- More Icon -->
+            <span class="material-symbols-outlined"> more_horiz </span>
+            <span class="sr-only">Icon description</span>
+          </button>
+
+          <!-- More dropdown menu -->
+          <div
+            id="more-menu"
+            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-2xl shadow border w-44"
+          >
+            <ul class="p-1 text-sm text-gray-700" aria-labelledby="moreMenu">
+              <li>
+                <!-- Expand Button for Mobile -->
+                <button
+                  class="block w-full text-left px-4 py-2 hover:bg-gray-100 rounded-xl"
+                  type="button"
+                  data-drawer-target="drawer-right-mobile"
+                  data-drawer-show="drawer-right-mobile"
+                  data-drawer-placement="right"
+                  aria-controls="drawer-right-mobile"
+                >
+                  Lihat
+                </button>
+              </li>
+
+              <li>
+                <!-- Edit Button for Mobile -->
+                <button
+                  type="button"
+                  data-modal-target="edit-prompt-mobile-modal"
+                  data-modal-toggle="edit-prompt-mobile-modal"
+                  class="block w-full text-left px-4 py-2 hover:bg-gray-100 rounded-xl"
+                >
+                  Edit
+                </button>
+              </li>
+
+              <li>
+                <!-- Delete Button for Mobile -->
+                <button
+                  type="button"
+                  data-modal-target="delete-prompt-mobile-modal"
+                  data-modal-toggle="delete-prompt-mobile-modal"
+                  class="block w-full text-left px-4 py-2 hover:bg-gray-100 rounded-xl"
+                >
+                  Hapus
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Expand Drawer Mobile Component -->
+          <div
+            id="drawer-right-mobile"
+            class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-96"
+            tabindex="-1"
+            aria-labelledby="drawer-right-mobile-label"
+          >
+            <!-- Header -->
+            <div class="flex justify-between items-center">
+              <!-- Header Title -->
+              <h5
+                id="drawer-right-mobile-label"
+                class="text-base font-semibold text-blake"
+              >
+                Bagging vs Boosting Prompt
+              </h5>
+
+              <!-- Close Button -->
+              <button
+                type="button"
+                data-drawer-hide="drawer-right-mobile"
+                aria-controls="drawer-right-mobile"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 inline-flex items-center justify-center"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close menu</span>
+              </button>
+            </div>
+
+            <!-- Drawer Content -->
+            <div class="mt-6">
+              <ul
+                class="inline-flex flex-wrap border rounded-full p-1 bg-slate-100"
+                id="prompt-tab-mobile"
+                data-tabs-toggle="#prompt-tab-content-mobile"
+                role="tablist"
+              >
+                <li role="presentation">
+                  <button
+                    class="inline-block text-xs font-semibold text-center rounded-full p-2 hover:bg-white aria-selected:bg-white"
+                    id="original-tab-mobile"
+                    data-tabs-target="#original-mobile"
+                    type="button"
+                    role="tab"
+                    aria-controls="original-mobile"
+                    aria-selected="false"
+                  >
+                    Asli
+                  </button>
+                </li>
+
+                <li role="presentation">
+                  <button
+                    class="inline-block text-xs font-semibold text-center rounded-full p-2 hover:bg-white aria-selected:bg-white"
+                    id="preprocessing-tab-mobile"
+                    data-tabs-target="#preprocessing-mobile"
+                    type="button"
+                    role="tab"
+                    aria-controls="preprocessing-mobile"
+                    aria-selected="false"
+                  >
+                    Preprocessing
+                  </button>
+                </li>
+              </ul>
+
+              <div id="prompt-tab-content-mobile" class="mt-4">
+                <!-- Original prompt -->
+                <ul
+                  class="hidden flex flex-col gap-y-5"
+                  id="original-mobile"
+                  role="tabpanel"
+                  aria-labelledby="original-tab-mobile"
+                >
+                  <!-- Sender Message -->
+                  <li
+                    class="p-4 rounded-2xl bg-gray-100 w-10/12 shadow ml-auto"
+                  >
+                    <p class="text-sm text-black text-wrap">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ea, officia.
+                    </p>
+                  </li>
+
+                  <!-- Receiver Message -->
+                  <li
+                    class="p-4 rounded-2xl bg-gray-100 w-10/12 shadow mr-auto"
+                  >
+                    <p class="text-sm text-black text-wrap">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Enim dolores quibusdam nisi distinctio, consequuntur sed
+                      molestiae rerum, a modi voluptas corporis quas architecto,
+                      aspernatur deleniti reprehenderit eos officiis? Quasi,
+                      dolorem. Aut, asperiores minima? Neque ab incidunt rem
+                      itaque vero autem voluptatum! Maiores laudantium facere
+                      officiis et consequuntur quasi, rem fugiat nobis.
+                      Accusantium tempore repellat nihil laudantium id
+                      asperiores amet beatae dolore temporibus iste, at minima
+                      reiciendis distinctio? Perferendis non cupiditate nisi
+                      repellat reiciendis illum libero cum laboriosam. Cum
+                      debitis dolorum expedita, impedit corrupti laborum
+                      inventore eos quidem ut, non explicabo. Fuga qui,
+                      architecto error voluptatum odit dolore corrupti cumque in
+                      delectus voluptatibus velit modi. Ullam aliquam nisi
+                      provident nam suscipit vel ratione vitae iste accusamus
+                      accusantium maxime velit ad dolore natus rerum earum hic
+                      veniam quibusdam tempora aut, fugit, commodi id.
+                      Perferendis ea pariatur delectus minima, iure ducimus eum
+                      aliquam necessitatibus debitis, iusto, accusantium
+                      expedita! Animi assumenda dolorem itaque voluptatum. Eos
+                      quia quibusdam, sunt dolor rerum eius rem vel explicabo
+                      perspiciatis dolorum. Aut in laboriosam, nam dolorum iure
+                      officiis laborum libero doloremque aspernatur eligendi
+                      eius, perspiciatis voluptate ut excepturi accusamus, amet
+                      illum id a. Iusto nisi accusantium quaerat optio enim
+                      omnis eum expedita placeat modi, veritatis suscipit
+                      explicabo consectetur voluptatem?
+                    </p>
+                  </li>
+                </ul>
+
+                <!-- Preprocessing prompt -->
+                <ul
+                  class="hidden flex flex-col gap-y-5"
+                  id="preprocessing-mobile"
+                  role="tabpanel"
+                  aria-labelledby="preprocessing-tab-mobile"
+                >
+                  <!-- Sender Message -->
+                  <li
+                    class="p-4 rounded-2xl bg-gray-100 w-10/12 shadow ml-auto"
+                  >
+                    <p class="text-sm text-black lowercase text-wrap">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Impedit suscipit, fuga ipsa et quidem iusto!
+                    </p>
+                  </li>
+
+                  <!-- Receiver Message -->
+                  <li
+                    class="p-4 rounded-2xl bg-gray-100 w-10/12 shadow mr-auto"
+                  >
+                    <p class="text-sm text-black lowercase text-wrap">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Temporibus facilis molestias, velit illo doloremque maxime
+                      asperiores, natus laudantium quia, beatae deleniti facere.
+                      Tempore mollitia enim cum nostrum unde iusto labore quos
+                      consequatur inventore ipsam numquam assumenda vero tempora
+                      cumque doloremque, eveniet expedita, consectetur quam
+                      aliquid molestias in aspernatur omnis illo?
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Edit Prompt Modal -->
+          <div
+            id="edit-prompt-mobile-modal"
+            tabindex="-1"
+            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          >
+            <div class="relative w-full max-w-md max-h-full">
+              <!-- Modal content -->
+              <div class="relative bg-white rounded-[28px] shadow-sm">
+                <!-- Modal header -->
+                <div
+                  class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+                >
+                  <h3 class="text-xl font-medium text-gray-900">Edit prompt</h3>
+                  <button
+                    type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="edit-prompt-mobile-modal"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                  </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5">
+                  <!-- Prompt link input -->
+                  <div>
+                    <label
+                      for="prompt-link"
+                      class="block mb-1 text-sm font-medium text-gray-900"
+                      >Link prompt</label
+                    >
+                    <input
+                      id="prompt-link"
+                      type="text"
+                      class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+                    />
+                  </div>
+
+                  <div class="flex justify-end mt-4">
+                    <button
+                      type="button"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete Confirm Modal -->
+          <div
+            id="delete-prompt-mobile-modal"
+            tabindex="-1"
+            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          >
+            <div class="relative w-full max-w-md max-h-full">
+              <!-- Modal content -->
+              <div class="relative bg-white rounded-[28px] shadow-sm">
+                <!-- Modal header -->
+                <div
+                  class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+                >
+                  <h3 class="text-xl font-medium text-gray-900">
+                    Hapus prompt?
+                  </h3>
+                  <button
+                    type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="delete-prompt-mobile-modal"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                  </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5">
+                  <!-- Prompt link input -->
+                  <p class="text-sm text-black">
+                    Anda tidak akan lagi melihat obrolan ini di sini. Ini juga
+                    akan menghapus aktivitas terkait seperti prompt, respons,
+                    dan umpan balik. Apakah Anda yakin ingin menghapus data
+                    tersebut?
+                  </p>
+
+                  <div class="flex justify-end mt-4">
+                    <button
+                      type="button"
+                      class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+                    >
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Table / Prompt datas when in tablet/desktop view -->
+      <div class="hidden md:block">
+        <!-- Table header -->
+        <div class="grid grid-cols-12 border-b pb-2 w-full">
+          <div
+            class="col-span-1 text-xs md:text-sm font-medium text-center whitespace-nowrap"
+          >
+            #
+          </div>
+          <div
+            class="col-span-3 pr-6 text-xs md:text-sm font-medium whitespace-nowrap"
+          >
+            Judul
+          </div>
+          <div
+            class="col-span-3 px-6 text-xs md:text-sm font-medium whitespace-nowrap"
+          >
+            Diunggah oleh
+          </div>
+          <div
+            class="col-span-3 px-6 text-xs md:text-sm font-medium whitespace-nowrap"
+          >
+            Tanggal ditambahkan
+          </div>
+          <div
+            class="col-span-2 px-6 text-xs md:text-sm font-medium whitespace-nowrap"
+          >
+            Aksi
+          </div>
+        </div>
+
+        <!-- Table body -->
+        <div class="mt-2">
+          <div
+            class="group grid grid-cols-12 items-center hover:bg-slate-100 py-2.5 rounded-xl"
+          >
+            <!-- Number -->
+            <div class="col-span-1 text-sm text-center whitespace-nowrap">
+              1
+            </div>
+
+            <!-- Chat titles on ChatGPT -->
+            <div class="col-span-3 pr-6 whitespace-nowrap">
+              <p class="text-sm line-clamp-2">Bagging vs Boosting</p>
+            </div>
+
+            <!-- Uploader Name -->
+            <div class="col-span-3 px-6 text-sm whitespace-nowrap">
+              Fathan Alfariel Adhyaksa
+            </div>
+
+            <!-- Date Added -->
+            <div class="col-span-3 px-6 text-sm whitespace-nowrap">
+              Senin, 19 Desember 2024
+            </div>
+
+            <!-- Action Button -->
+            <div
+              class="col-span-2 px-6 flex items-center gap-x-0.5 whitespace-nowrap"
+            >
+              <!-- Expand Prompt -->
+              <div id="expand-prompt">
+                <!-- Expand Button -->
+                <div id="expand-button">
+                  <button
+                    type="button"
+                    data-tooltip-target="expand-button-tooltip"
+                    data-tooltip-placement="bottom"
+                    class="text-slate-600 hover:text-black hover:bg-slate-300 focus:ring-2 focus:outline-none focus:ring-slate-300 rounded-full p-1 text-center inline-flex items-center"
+                    data-drawer-target="drawer-right-example"
+                    data-drawer-show="drawer-right-example"
+                    data-drawer-placement="right"
+                    aria-controls="drawer-right-example"
+                  >
+                    <!-- Expand Icon -->
+                    <span class="material-symbols-outlined">
+                      expand_content
+                    </span>
+                    <span class="sr-only">Icon description</span>
+                  </button>
+
+                  <div
+                    id="expand-button-tooltip"
+                    role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow opacity-0 tooltip"
+                  >
+                    Lihat
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                </div>
+
+                <!-- Expand Drawer component -->
+                <div
+                  id="drawer-right-example"
+                  class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white max-w-xl"
+                  tabindex="-1"
+                  aria-labelledby="drawer-right-label"
+                >
+                  <!-- Close Button -->
+                  <div class="flex justify-between items-center">
+                    <h5
+                      id="drawer-right-label"
+                      class="text-base font-semibold text-blake"
+                    >
+                      Bagging vs Boosting Prompt
+                    </h5>
+
+                    <button
+                      type="button"
+                      data-drawer-hide="drawer-right-example"
+                      aria-controls="drawer-right-example"
+                      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 inline-flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-3 h-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 14"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                        />
+                      </svg>
+                      <span class="sr-only">Close menu</span>
+                    </button>
+                  </div>
+
+                  <!-- Drawer Content -->
+                  <div class="mt-6">
+                    <ul
+                      class="inline-flex flex-wrap border rounded-full p-1 bg-slate-100"
+                      id="prompt-tab"
+                      data-tabs-toggle="#prompt-tab-content"
+                      role="tablist"
+                    >
+                      <li role="presentation">
+                        <button
+                          class="inline-block text-xs font-semibold text-center rounded-full p-2 hover:bg-white aria-selected:bg-white"
+                          id="original-tab"
+                          data-tabs-target="#original"
+                          type="button"
+                          role="tab"
+                          aria-controls="original"
+                          aria-selected="false"
+                        >
+                          Asli
+                        </button>
+                      </li>
+
+                      <li role="presentation">
+                        <button
+                          class="inline-block text-xs font-semibold text-center rounded-full p-2 hover:bg-white aria-selected:bg-white"
+                          id="preprocessing-tab"
+                          data-tabs-target="#preprocessing"
+                          type="button"
+                          role="tab"
+                          aria-controls="preprocessing"
+                          aria-selected="false"
+                        >
+                          Preprocessing
+                        </button>
+                      </li>
+                    </ul>
+
+                    <div id="prompt-tab-content" class="mt-4">
+                      <!-- Original prompt -->
+                      <ul
+                        class="hidden flex flex-col gap-y-5"
+                        id="original"
+                        role="tabpanel"
+                        aria-labelledby="original-tab"
+                      >
+                        <!-- Sender Message -->
+                        <li
+                          class="p-4 rounded-2xl bg-gray-100 w-8/12 shadow ml-auto"
+                        >
+                          <p class="text-sm text-black text-wrap">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Ea, officia.
+                          </p>
+                        </li>
+
+                        <!-- Receiver Message -->
+                        <li
+                          class="p-4 rounded-2xl bg-gray-100 w-8/12 shadow mr-auto"
+                        >
+                          <p class="text-sm text-black text-wrap">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing
+                            elit. Enim dolores quibusdam nisi distinctio,
+                            consequuntur sed molestiae rerum, a modi voluptas
+                            corporis quas architecto, aspernatur deleniti
+                            reprehenderit eos officiis? Quasi, dolorem. Aut,
+                            asperiores minima? Neque ab incidunt rem itaque vero
+                            autem voluptatum! Maiores laudantium facere officiis
+                            et consequuntur quasi, rem fugiat nobis. Accusantium
+                            tempore repellat nihil laudantium id asperiores amet
+                            beatae dolore temporibus iste, at minima reiciendis
+                            distinctio? Perferendis non cupiditate nisi repellat
+                            reiciendis illum libero cum laboriosam. Cum debitis
+                            dolorum expedita, impedit corrupti laborum inventore
+                            eos quidem ut, non explicabo. Fuga qui, architecto
+                            error voluptatum odit dolore corrupti cumque in
+                            delectus voluptatibus velit modi. Ullam aliquam nisi
+                            provident nam suscipit vel ratione vitae iste
+                            accusamus accusantium maxime velit ad dolore natus
+                            rerum earum hic veniam quibusdam tempora aut, fugit,
+                            commodi id. Perferendis ea pariatur delectus minima,
+                            iure ducimus eum aliquam necessitatibus debitis,
+                            iusto, accusantium expedita! Animi assumenda dolorem
+                            itaque voluptatum. Eos quia quibusdam, sunt dolor
+                            rerum eius rem vel explicabo perspiciatis dolorum.
+                            Aut in laboriosam, nam dolorum iure officiis laborum
+                            libero doloremque aspernatur eligendi eius,
+                            perspiciatis voluptate ut excepturi accusamus, amet
+                            illum id a. Iusto nisi accusantium quaerat optio
+                            enim omnis eum expedita placeat modi, veritatis
+                            suscipit explicabo consectetur voluptatem?
+                          </p>
+                        </li>
+                      </ul>
+
+                      <!-- Preprocessing prompt -->
+                      <ul
+                        class="hidden flex flex-col gap-y-5"
+                        id="preprocessing"
+                        role="tabpanel"
+                        aria-labelledby="preprocessing-tab"
+                      >
+                        <!-- Sender Message -->
+                        <li
+                          class="p-4 rounded-2xl bg-gray-100 w-8/12 shadow ml-auto"
+                        >
+                          <p class="text-sm text-black lowercase text-wrap">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Impedit suscipit, fuga ipsa et quidem iusto!
+                          </p>
+                        </li>
+
+                        <!-- Receiver Message -->
+                        <li
+                          class="p-4 rounded-2xl bg-gray-100 w-8/12 shadow mr-auto"
+                        >
+                          <p class="text-sm text-black lowercase text-wrap">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Temporibus facilis molestias, velit illo
+                            doloremque maxime asperiores, natus laudantium quia,
+                            beatae deleniti facere. Tempore mollitia enim cum
+                            nostrum unde iusto labore quos consequatur inventore
+                            ipsam numquam assumenda vero tempora cumque
+                            doloremque, eveniet expedita, consectetur quam
+                            aliquid molestias in aspernatur omnis illo?
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Edit Button -->
+              <div id="edit-button">
+                <!-- Edit Button -->
+                <button
+                  type="button"
+                  data-tooltip-target="edit-button-tooltip"
+                  data-tooltip-placement="bottom"
+                  data-modal-target="edit-prompt-modal"
+                  data-modal-toggle="edit-prompt-modal"
+                  class="text-slate-600 hover:text-black hover:bg-slate-300 focus:ring-2 focus:outline-none focus:ring-slate-300 rounded-full p-1 text-center inline-flex items-center"
+                >
+                  <!-- Edit Icon -->
+                  <span class="material-symbols-outlined"> edit </span>
+                  <span class="sr-only">Icon description</span>
+                </button>
+
+                <!-- Edit Tooltip -->
+                <div
+                  id="edit-button-tooltip"
+                  role="tooltip"
+                  class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow opacity-0 tooltip"
+                >
+                  Edit
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+
+                <!-- Edit Prompt Modal -->
+                <div
+                  id="edit-prompt-modal"
+                  tabindex="-1"
+                  class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                >
+                  <div class="relative w-full max-w-md max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-[28px] shadow-sm">
+                      <!-- Modal header -->
+                      <div
+                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+                      >
+                        <h3 class="text-xl font-medium text-gray-900">
+                          Edit prompt
+                        </h3>
+                        <button
+                          type="button"
+                          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                          data-modal-hide="edit-prompt-modal"
+                        >
+                          <svg
+                            class="w-3 h-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 14"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                            />
+                          </svg>
+                          <span class="sr-only">Close modal</span>
+                        </button>
+                      </div>
+                      <!-- Modal body -->
+                      <div class="p-4 md:p-5">
+                        <!-- Prompt link input -->
+                        <div>
+                          <label
+                            for="prompt-link"
+                            class="block mb-1 text-sm font-medium text-gray-900"
+                            >Link prompt</label
+                          >
+                          <input
+                            id="prompt-link"
+                            type="text"
+                            class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+                          />
+                        </div>
+
+                        <div class="flex justify-end mt-4">
+                          <button
+                            type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+                          >
+                            Edit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Delete Button -->
+              <div id="delete-button">
+                <!-- Delete Button -->
+                <button
+                  type="button"
+                  data-tooltip-target="delete-button-tooltip"
+                  data-tooltip-placement="bottom"
+                  data-modal-target="delete-prompt-modal"
+                  data-modal-toggle="delete-prompt-modal"
+                  class="text-red-500 hover:text-red-800 hover:bg-red-200 focus:ring-2 focus:outline-none focus:ring-red-300 rounded-full p-1 text-center inline-flex items-center"
+                >
+                  <!-- Delete Icon -->
+                  <span class="material-symbols-outlined"> delete </span>
+                  <span class="sr-only">Icon description</span>
+                </button>
+
+                <!-- Delete Tooltip -->
+                <div
+                  id="delete-button-tooltip"
+                  role="tooltip"
+                  class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow opacity-0 tooltip"
+                >
+                  Hapus
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+
+                <!-- Delete Confirm Modal -->
+                <div
+                  id="delete-prompt-modal"
+                  tabindex="-1"
+                  class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                >
+                  <div class="relative w-full max-w-md max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-[28px] shadow-sm">
+                      <!-- Modal header -->
+                      <div
+                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+                      >
+                        <h3 class="text-xl font-medium text-gray-900">
+                          Hapus prompt?
+                        </h3>
+                        <button
+                          type="button"
+                          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                          data-modal-hide="delete-prompt-modal"
+                        >
+                          <svg
+                            class="w-3 h-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 14"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                            />
+                          </svg>
+                          <span class="sr-only">Close modal</span>
+                        </button>
+                      </div>
+                      <!-- Modal body -->
+                      <div class="p-4 md:p-5">
+                        <!-- Prompt link input -->
+                        <p class="text-sm text-black">
+                          Anda tidak akan lagi melihat obrolan ini di sini. Ini
+                          juga akan menghapus aktivitas terkait seperti prompt,
+                          respons, dan umpan balik. Apakah Anda yakin ingin
+                          menghapus data tersebut?
+                        </p>
+
+                        <div class="flex justify-end mt-4">
+                          <button
+                            type="button"
+                            class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+                          >
+                            Hapus
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Sign in Modal -->
+    <div
+      id="sign-in-modal"
+      tabindex="-1"
+      class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-[28px] shadow-sm">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+          >
+            <h3 class="text-xl font-medium text-gray-900">Sign in</h3>
+            <button
+              type="button"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              data-modal-hide="sign-in-modal"
+            >
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5">
+            <!-- Username input -->
+            <div>
+              <label
+                for="username"
+                class="block mb-1 text-sm font-medium text-gray-900"
+                >Username</label
+              >
+              <input
+                id="username"
+                type="text"
+                class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+              />
+            </div>
+
+            <!-- Password input -->
+            <div class="mt-2.5">
+              <label
+                for="password"
+                class="block mb-1 text-sm font-medium text-gray-900"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+                required
+              />
+            </div>
+
+            <div class="flex justify-end mt-4">
+              <button
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign up Modal -->
+    <div
+      id="sign-up-modal"
+      tabindex="-1"
+      class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-[28px] shadow-sm">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+          >
+            <h3 class="text-xl font-medium text-gray-900">Sign up</h3>
+            <button
+              type="button"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              data-modal-hide="sign-up-modal"
+            >
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5">
+            <!-- Username input -->
+            <div>
+              <label
+                for="username"
+                class="block mb-1 text-sm font-medium text-gray-900"
+                >Username</label
+              >
+              <input
+                id="username"
+                type="text"
+                class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+              />
+            </div>
+
+            <!-- Password input -->
+            <div class="mt-2.5">
+              <label
+                for="password"
+                class="block mb-1 text-sm font-medium text-gray-900"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+                required
+              />
+            </div>
+
+            <div class="flex justify-end mt-4">
+              <button
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Prompt Modal -->
+    <div
+      id="add-prompt-modal"
+      tabindex="-1"
+      class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-[28px] shadow-sm">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200"
+          >
+            <h3 class="text-xl font-medium text-gray-900">Tambah prompt</h3>
+            <button
+              type="button"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              data-modal-hide="add-prompt-modal"
+            >
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5">
+            <!-- Prompt link input -->
+            <div>
+              <label
+                for="prompt-link"
+                class="block mb-1 text-sm font-medium text-gray-900"
+                >Link prompt</label
+              >
+              <input
+                id="prompt-link"
+                type="text"
+                class="border-2 border-gray-300 text-gray-900 text-sm rounded-xl hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200"
+              />
+            </div>
+
+            <div class="flex justify-end mt-4">
+              <button
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center"
+              >
+                Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  </body>
+</html>
